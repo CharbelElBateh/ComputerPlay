@@ -3,11 +3,34 @@
     <head>
         <title>Computer Play</title>
         <meta charset="UTF-8">
-        <script src="RockPaperScissors.js"></script>
+        <script src="RockPaperScissors.js" defer></script>
+        <style>
+            .Scores{
+                display: flexbox;
+                justify-content: space-around;
+                text-align: center;
+                font-size: 30px;
+                flex-direction: row;
+            }
+            .buttons{
+                display: flexbox;
+                justify-content: space-around;
+                text-align: center;
+                margin: 5px;
+            }
+        </style>
     </head>
     <body>
-        <p style="display: flexbox; justify-content: center; text-align: center; font-size: 18px;">
-            Check the console(Ctrl+Shift+I) to see the results!
+        <div class = "Scores">
+            
+        </div>
+        <p style="display: flexbox; justify-content: middle; text-align: center; font-size: 18px; height: 50px;">
+            
         </p>
+        <div class="buttons">
+            <button class="Rock">Rock</button>
+            <button class="Paper">Paper</button>
+            <button class="Scissors">Scissors</button>
+        </div>
     </body>
 </html>
