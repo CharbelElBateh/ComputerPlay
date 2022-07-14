@@ -1,9 +1,9 @@
 //Possible choices for rps
-let computerChoice = ["Rock","Paper","Scissors"]
+let computerChoice = ["Rock","Paper","Scissors"];
 
 //Generates random selectors for the computer choice
 function computerPlay(){
-    let randomNum=Math.floor(Math.random()*3)
+    let randomNum=Math.floor(Math.random()*3);
     return computerChoice[randomNum];
 }
 
@@ -12,24 +12,35 @@ var computerSelection = computerPlay();
 let score;
 var computerScore = 0;
 var playerScore = 0;
-const buttons = document.querySelectorAll("button");
+const buttons = document.querySelectorAll("#button");
 const p = document.querySelector("p");
-const div =document.querySelector("div.Scores")
+const div =document.querySelector("div.Scores");
+const newGameButton = document.querySelector(".new-game");
 
 //Displays scores at the start
 div.innerHTML = `
-<p>Computer Score:${computerScore}</p>
-<p>Player Score:${playerScore}</p>
-`
+    <p>Computer Score:${computerScore}</p>
+    <p>Player Score:${playerScore}</p>
+`;
 
 //Makes The buttons take the players choice
 buttons.forEach(button =>
     button.addEventListener('click',()=>{
         computerSelection = computerPlay();
-        p.innerText=`${playRound(button.classList.value, computerSelection)}`
+        p.innerText=`${playRound(button.classList.value, computerSelection)}`;
     })
-)
+);
 
+//Starts a new game and resets scores
+newGameButton.addEventListener('click',()=>{
+    computerScore=0;
+    playerScore=0;
+    div.innerHTML = `
+        <p>Computer Score:${computerScore}</p>
+        <p>Player Score:${playerScore}</p>
+    `;
+    p.innerText="";
+});
 //Function that chooses the winners and updates the scores
 function playRound(playerSelection, computerSelection) {
     function lose(){
@@ -72,11 +83,30 @@ function playRound(playerSelection, computerSelection) {
                 }
                 break;
         }
+        if(computerScore==5){
+            div.innerHTML = `
+                <p style=" font-size: 28px">Computer Wins!</p>
+                <p>Computer Score:${computerScore}</p>
+                <p>Player Score:${playerScore}</p>
+            `;
+            computerScore = 0;
+            playerScore = 0;
+            return score;
+        }else if(playerScore==5){
+            div.innerHTML = `
+                <p style=" font-size: 28px">You Win!</p>
+                <p>Computer Score:${computerScore}</p>
+                <p>Player Score:${playerScore}</p>
+            `;
+            computerScore = 0;
+            playerScore = 0;
+            return score;
+        }else{
             div.innerHTML = `
                 <p>Computer Score:${computerScore}</p>
                 <p>Player Score:${playerScore}</p>
-                `
-
+                `;
         return score;
+        }
     }
 }
